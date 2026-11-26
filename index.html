@@ -105,6 +105,7 @@ dialog .err{color:#c0392b;font-size:14px;min-height:1.4em;margin:6px 0 0}
 @media(max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}.medal{order:-1}.medal svg{width:min(240px,70%)}.vbody{grid-template-columns:minmax(0,1fr)}.pbox{position:sticky;top:0;z-index:2;background:var(--bg);padding-bottom:8px}}
 @media(max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.brand{font-size:22px}.ib{width:42px;height:42px}.bar .btn{padding:0 14px}.resume img{width:90px}}
 @media(prefers-reduced-motion:no-preference){.meter i,#ring{transition:width .6s,stroke-dashoffset .9s}}
+.inc{display:inline-block;margin-inline-start:8px;padding:1px 9px;border-radius:99px;font-size:.78em;font-weight:600;color:#8a5a12;background:#f6e7c8;border:1px solid #e3c58a;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -279,11 +280,12 @@ function renderChips(){
  $('#chips').innerHTML=[{k:'all',n:'الكل'},...FANS].map(f=>`<button class="chip" data-f="${f.k}" aria-pressed="${fan===f.k}">${esc(f.n)}<i>${ar(f.k==='all'?all().length:f.k==='new'?all().filter(s=>s.nw).length:cnt(f.k))}</i></button>`).join('');
 }
 
+const INC=['سرد المطولات','شرح (تفسير السعدي)'];
 function card(s){
  const p=seriesProg(s.id),F=FANS.find(f=>f.k===s.f);
  const w=p?Math.round(p.pct*100):0;
  const info=p?`${ar(p.done)} من ${ar(p.n)} درسًا`:'افتحها لتحميل دروسها';
- return `<article class="card"><span class="tag">${esc(F?F.n:'')}</span><h3>${esc(s.t)}</h3><span class="by">${s.mine?'أضفتها أنت':'قناة الشيخ'}${s.n?' · '+ar(s.n)+' مقطعًا':''}</span>
+ return `<article class="card"><span class="tag">${esc(F?F.n:'')}</span>${INC.some(w=>s.t.includes(w))?'<span class="inc">غير مكتمل</span>':''}<h3>${esc(s.t)}</h3><span class="by">${s.mine?'أضفتها أنت':'قناة الشيخ'}${s.n?' · '+ar(s.n)+' مقطعًا':''}</span>
  <div class="meter" aria-label="التقدم ${w}%"><i style="width:${w}%"></i></div>
  <div class="row"><span>${info}${p&&w?' · ٪'+ar(w):''}</span><button data-open="${esc(s.id)}">${p&&p.pct>0?'تابع':'ابدأ'}</button></div>
  ${s.mine?`<button class="x" data-del="${esc(s.id)}">حذف هذه السلسلة</button>`:''}</article>`;
