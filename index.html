@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مجالس العصيمي</title>
+<meta name="description" content="دروس الشيخ صالح بن عبد الله العصيمي مرتبة على الفنون، مع حفظ موضع التوقف في كل درس.">
+<meta name="theme-color" content="#0f3b3f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: هادئ، وقور، كمجلس علم
+   IDEA: دفتر طالب العلم: سلاسل مرتبة على الفنون، ومؤشر يتقدم مع كل مجلس
+   PICTURE: نجمة ثمانية في وسطها حلقة التقدم الكلي، فوق زخرفة هندسية
+   COLOUR and TYPE: أخضر مسجدي داكن، رملي، ذهبي؛ Amiri للعناوين وIBM Plex Sans Arabic للنص
+   LAYOUT: رأس ثابت، بطاقة رئيسة، شريط الفنون، شبكة السلاسل، ونافذة المشغّل */
+:root{color-scheme:light dark;
+--bg:light-dark(#f4efe4,#0e1718);--card:light-dark(#fffaf0,#152224);--ink:light-dark(#1b2628,#ece6d8);
+--mute:light-dark(#6c6a62,#9fa69f);--line:light-dark(#e2d8c3,#26393b);--pri:#0f3b3f;--pri2:light-dark(#0f3b3f,#1d5a5f);
+--gold:#c09146;--gold2:light-dark(#9c7231,#d9ae62);--ok:light-dark(#2f7a4f,#6cc08d)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "IBM Plex Sans Arabic",Tahoma,sans-serif;overflow-x:clip}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--gold2)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1180px;margin:auto;padding:0 max(4vw,14px)}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;gap:10px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;font:700 26px/1 Amiri,serif;margin-inline-end:auto;color:var(--ink);text-decoration:none}
+.ib{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center}
+.ib svg{width:20px;height:20px}
+.bar{display:flex;gap:10px;padding-bottom:12px}
+.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:0 16px;height:48px}
+.search input{border:0;background:none;outline:0;flex:1;font-size:16px}
+.btn{height:48px;padding:0 20px;border-radius:30px;border:1.5px solid var(--gold);background:var(--card);font-weight:600;white-space:nowrap}
+.btn.solid{background:var(--pri2);color:#fff;border-color:var(--pri2)}
+.hero{margin:22px 0;border-radius:28px;background:var(--pri);color:#f3ead7;position:relative;overflow:hidden;padding:clamp(22px,4vw,44px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero .pat{position:absolute;inset:0;opacity:.13;pointer-events:none}
+.hero>*:not(.pat){position:relative}
+.hero small{color:var(--gold);font-weight:600;font-size:17px}
+.hero h1{font:700 clamp(36px,6vw,54px)/1.15 Amiri,serif;margin:6px 0 10px;text-wrap:balance}
+.hero p{margin:0 0 18px;opacity:.9;max-width:58ch}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stat{border:1px solid #ffffff2e;border-radius:18px;padding:12px 6px;text-align:center;background:#ffffff0d}
+.stat b{display:block;font-size:24px;color:var(--gold);line-height:1.3}
+.stat span{font-size:13px;opacity:.85}
+.medal{display:grid;place-items:center}
+.medal svg{width:min(320px,100%);height:auto}
+.resume{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;margin-bottom:18px}
+.resume img{width:120px;aspect-ratio:16/9;object-fit:cover;border-radius:12px;background:var(--line)}
+.resume div{flex:1}
+.resume b{display:block;line-height:1.4}
+.resume span{color:var(--mute);font-size:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+.chip{flex:none;height:42px;padding:0 16px;border-radius:22px;border:1px solid var(--line);background:var(--card)}
+.chip[aria-pressed=true]{background:var(--pri2);color:#fff;border-color:var(--pri2)}
+.chip i{font-style:normal;opacity:.7;font-size:13px;margin-inline-start:4px}
+h2{font:700 30px/1.2 Amiri,serif;margin:18px 0 4px}
+.sub{color:var(--mute);margin:0 0 14px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:26px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:8px;text-align:start}
+.card .tag{font-size:13px;color:var(--gold2);font-weight:600}.nw{background:var(--gold);color:#1b2628;border-radius:10px;padding:1px 8px;font-size:12px;margin-inline-start:6px}.jeman{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin:10px 0 30px}.jeman h2{margin-top:0}.jeman div{display:flex;flex-wrap:wrap;gap:8px}.jeman a{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;border-radius:21px;border:1px solid var(--line);text-decoration:none;color:var(--ink);background:var(--bg)}
+.card h3{font:700 22px/1.35 Amiri,serif;margin:0}
+.card .by{color:var(--mute);font-size:14px;margin-top:-4px}
+.meter{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin-top:auto}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--ok));border-radius:8px}
+.card .row{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute);gap:8px}
+.card .row button{height:40px;padding:0 16px;border-radius:20px;border:0;background:var(--pri2);color:#fff;font-weight:600}
+.card .x{border:0;background:none;color:var(--mute);font-size:13px;text-decoration:underline;padding:0}
+.empty{grid-column:1/-1;border:1.5px dashed var(--line);border-radius:22px;padding:22px;text-align:center;color:var(--mute)}
+.lib{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+/* المشغّل */
+#view{position:fixed;inset:0;z-index:40;background:var(--bg);display:none;flex-direction:column}
+#view.on{display:flex}
+.vh{display:flex;align-items:center;gap:10px;padding:10px max(4vw,14px);border-bottom:1px solid var(--line)}
+.vh h3{flex:1;margin:0;font:700 22px/1.3 Amiri,serif}
+.vbody{flex:1;overflow:auto;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;padding:16px max(4vw,14px)}
+.pbox{position:sticky;top:0;align-self:start}
+.ratio{position:relative;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden}
+.ratio iframe,.ratio>div{position:absolute;inset:0;width:100%;height:100%}
+.now{margin-top:10px;font-weight:600;line-height:1.5}
+.now span{display:block;color:var(--mute);font-weight:400;font-size:14px}
+.lessons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.lessons li button{width:100%;display:flex;gap:10px;align-items:center;text-align:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px}
+.lessons li button[aria-current=true]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.lessons img{width:96px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;background:var(--line);flex:none}
+.lessons .t{flex:1;font-size:14px;line-height:1.45}
+.lessons .m{height:4px;background:var(--line);border-radius:4px;margin-top:6px;overflow:hidden}
+.lessons .m i{display:block;height:100%;background:var(--gold)}
+.lessons .d{color:var(--ok);font-size:13px;font-weight:600}
+.note{color:var(--mute);font-size:14px;padding:10px 0}.tf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font-size:14px}.tf span{color:var(--mute)}.tf a{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--gold);text-decoration:none;color:var(--ink);background:var(--card)}
+dialog{border:1px solid var(--line);border-radius:22px;background:var(--card);color:var(--ink);width:min(460px,92vw);padding:22px}
+dialog::backdrop{background:#0009}
+dialog h3{font:700 24px Amiri,serif;margin:0 0 10px}
+dialog label{display:block;font-size:14px;font-weight:600;margin:12px 0 4px}
+dialog input,dialog select{width:100%;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--bg);padding:0 12px;font-size:16px}
+dialog .acts{display:flex;gap:10px;margin-top:18px;justify-content:flex-start}
+dialog .err{color:#c0392b;font-size:14px;min-height:1.4em;margin:6px 0 0}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--pri2);color:#fff;padding:10px 18px;border-radius:20px;z-index:60;display:none}
+@media(max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}.medal{order:-1}.medal svg{width:min(240px,70%)}.vbody{grid-template-columns:minmax(0,1fr)}.pbox{position:sticky;top:0;z-index:2;background:var(--bg);padding-bottom:8px}}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.brand{font-size:22px}.ib{width:42px;height:42px}.bar .btn{padding:0 14px}.resume img{width:90px}}
+@media(prefers-reduced-motion:no-preference){.meter i,#ring{transition:width .6s,stroke-dashoffset .9s}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="top">
+   <a class="brand" href="#"><svg width="34" height="34" viewBox="-50 -50 100 100" aria-hidden="true"><rect x="-34" y="-34" width="68" height="68" fill="#c09146"/><rect x="-34" y="-34" width="68" height="68" fill="#c09146" transform="rotate(45)"/><circle r="17" fill="#0f3b3f"/></svg>مجالس العصيمي</a>
+   <button class="ib" id="help" aria-label="عن الموقع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg></button>
+   <button class="ib" id="theme" aria-label="الوضع الليلي"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+   <button class="ib" id="share" aria-label="مشاركة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5M5 14v6h14v-6"/></svg></button>
+  </div>
+  <div class="bar">
+   <label class="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="ابحث في السلاسل والدروس…" aria-label="بحث"></label>
+   <button class="btn" id="addBtn">أضف سلسلة</button>
+  </div>
+ </div>
+</header>
+
+<main class="wrap">
+ <section class="hero">
+  <svg class="pat" width="100%" height="100%" aria-hidden="true"><defs><pattern id="p" width="80" height="80" patternUnits="userSpaceOnUse"><g fill="none" stroke="#e9d9b0" stroke-width="1.2" transform="translate(40 40)"><rect x="-22" y="-22" width="44" height="44"/><rect x="-22" y="-22" width="44" height="44" transform="rotate(45)"/><circle r="12"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#p)"/></svg>
+  <div>
+   <small>الشيخ صالح بن عبد الله العصيمي</small>
+   <h1>مجالس العلم، فنًّا فنًّا</h1>
+   <p>كل قوائم دروس الشيخ، مرتبة على الفنون، وصوتيات موقع «جامع الإيمان». يُحفظ موضع توقفك في كل درس، وتتقدّم كل سلسلة مع كل دقيقة تسمعها.</p>
+   <div class="stats">
+    <div class="stat"><b id="sS">٠</b><span>سلسلة</span></div>
+    <div class="stat"><b id="sL">٠</b><span>درس ومجلس</span></div>
+    <div class="stat"><b id="sH">٠</b><span>ساعة استماع</span></div>
+    <div class="stat"><b id="sD">٠</b><span>درسًا أتممته</span></div>
+   </div>
+  </div>
+  <div class="medal">
+   <svg viewBox="-110 -110 220 220" role="img" aria-label="نسبة الإنجاز">
+    <g fill="#16484d" stroke="#c09146" stroke-width="2"><rect x="-78" y="-78" width="156" height="156" rx="6"/><rect x="-78" y="-78" width="156" height="156" rx="6" transform="rotate(45)"/></g>
+    <circle r="72" fill="#fbf4e4"/>
+    <circle r="60" fill="none" stroke="#e7dcc4" stroke-width="10"/>
+    <circle id="ring" r="60" fill="none" stroke="#c09146" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" transform="rotate(-90)"/>
+    <text id="pct" y="10" text-anchor="middle" font-size="34" font-weight="700" fill="#0f3b3f" font-family="IBM Plex Sans Arabic">٪٠</text>
+    <text id="pctL" y="36" text-anchor="middle" font-size="13" fill="#6c6a62" font-family="IBM Plex Sans Arabic">لم تبدأ بعد</text>
+   </svg>
+  </div>
+ </section>
+
+ <div id="resume"></div>
+ <nav class="chips" id="chips" aria-label="الفنون"></nav>
+ <div id="list"></div>
+ <section class="jeman" id="jeman">
+  <h2>صوتيات وإصدارات موقع «جامع الإيمان»</h2>
+  <p class="sub">موقع الشيخ الرسمي. فيه صوتيات البرامج كلها، ومنها مستويات أصول العلم الثالث والرابع، إلى جانب الإصدارات العلمية.</p>
+  <div>
+   <a href="https://j-eman.net/sounds/lessons/0/1" target="_blank" rel="noopener">الدروس الصوتية (حسب البرامج)</a>
+   <a href="https://j-eman.net/sounds/sciencelectures/0/1" target="_blank" rel="noopener">المحاضرات العلمية</a>
+   <a href="https://j-eman.net/sounds/simplifyscience/0/1" target="_blank" rel="noopener">تقريب العلم</a>
+   <a href="https://j-eman.net/sounds/programsquestions/0/1" target="_blank" rel="noopener">سؤالات البرامج</a>
+   <a href="https://j-eman.net/sounds/scientificmeetings/0/1" target="_blank" rel="noopener">اللقاءات العلمية</a>
+   <a href="https://j-eman.net/sounds/occasionsdoctrine/0/1" target="_blank" rel="noopener">فقه المناسبات</a>
+   <a href="https://j-eman.net/sounds/words/0/1" target="_blank" rel="noopener">الكلمات والمواعظ</a>
+   <a href="https://j-eman.net/sounds/lectures/0/1" target="_blank" rel="noopener">الخطب المنبرية</a>
+   <a href="https://j-eman.net/videos/visuallessons/0/1" target="_blank" rel="noopener">الدروس المرئية</a>
+   <a href="https://j-eman.net/blogs/scientificpublications/0/1" target="_blank" rel="noopener">الإصدارات العلمية</a>
+   <a href="https://j-eman.net/blogs/benefits/0/1" target="_blank" rel="noopener">مدونة الفوائد</a>
+   <a href="https://j-eman.net/blogs/pens/0/1" target="_blank" rel="noopener">أقلام العصيمي</a>
+  </div>
+ </section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <span>جمعٌ لقوائم يوتيوب المنشورة؛ والمادة لأصحابها.</span>
+  <a href="https://www.youtube.com/@alosyme" target="_blank" rel="noopener">قناة الدروس</a>
+    <a href="https://sites.google.com/view/al-osaimi/" target="_blank" rel="noopener">مكتبة الشيخ</a>
+  <a href="https://j-eman.net/" target="_blank" rel="noopener">موقع جامع الإيمان (j-eman.net)</a>
+  <a href="https://t.me/mkalosyme" target="_blank" rel="noopener">التفريغات المعتمدة</a>
+  <a href="https://t.me/wwwattafreegh" target="_blank" rel="noopener">تفريغات سالم</a>
+  <button class="x btn" id="exp" style="height:40px">حفظ نسخة من تقدّمي</button>
+  <label class="btn" style="height:40px;display:inline-flex;align-items:center">استرجاع نسخة<input id="imp" type="file" accept="application/json" hidden></label>
+ </div>
+</footer>
+
+<section id="view" aria-modal="true" role="dialog">
+ <div class="vh"><button class="ib" id="close" aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button><h3 id="vt"></h3><a class="lib" id="vy" target="_blank" rel="noopener">يوتيوب</a></div>
+ <div class="vbody">
+  <div class="pbox"><div class="ratio"><div id="player"></div></div><div class="now" id="now"></div><div class="tf"><span>تفريغ الدروس:</span><a href="https://t.me/mkalosyme" target="_blank" rel="noopener">الخزانة العصيمية (التفريغات المعتمدة)</a><a href="https://t.me/wwwattafreegh" target="_blank" rel="noopener">قناة سالم للتفريغ</a></div></div>
+  <div><ul class="lessons" id="lessons"></ul></div>
+ </div>
+</section>
+
+<dialog id="dlg">
+ <form method="dialog" id="addForm">
+  <h3>أضف سلسلة</h3>
+  <p class="sub" style="margin:0">من تطبيق يوتيوب: افتح قائمة التشغيل ← مشاركة ← نسخ الرابط، ثم الصقه هنا.</p>
+  <label for="fUrl">رابط قائمة التشغيل</label><input id="fUrl" dir="ltr" inputmode="url" placeholder="https://youtube.com/playlist?list=…" required>
+  <label for="fT">اسم السلسلة</label><input id="fT" placeholder="مثال: شرح الآجرومية" required>
+  <label for="fF">الفن</label><select id="fF"></select>
+  <p class="err" id="fErr"></p>
+  <div class="acts"><button class="btn solid" value="ok" id="fOk">إضافة</button><button class="btn" value="cancel" formnovalidate>إلغاء</button></div>
+ </form>
+</dialog>
+<dialog id="about">
+ <h3>عن «مجالس العصيمي»</h3>
+ <p>صفحة تجمع قوائم دروس الشيخ صالح العصيمي مرتبةً على الفنون. اختر سلسلة، ثم اختر درسًا، ويُحفظ موضع توقفك تلقائيًا في هذا المتصفح.</p>
+ <p>موقع الشيخ الرسمي «جامع الإيمان»: <a href="https://j-eman.net/" target="_blank" rel="noopener">j-eman.net</a>.</p>
+ <p>إذا لم تجد كتابًا تريده، فأضِف قائمته من زر «أضف سلسلة». وتحت كل فن رابط إلى متونه وكتبه في مكتبة الشيخ.</p>
+ <p class="sub">تقدّمك محفوظ في هذا الجهاز فقط. لتنقله إلى جهاز آخر استعمل «حفظ نسخة من تقدّمي» أسفل الصفحة.</p>
+ <form method="dialog"><button class="btn solid">حسنًا</button></form>
+</dialog>
+<div id="toast" role="status"></div>
+
+<script>
+{
+const LIB='https://sites.google.com/view/al-osaimi/';
+const FANS=[
+ {k:'aqeeda',n:'العقيدة',lib:'التقسيم-على-الفنون/العقيدة'},
+ {k:'tafsir',n:'التفسير وعلوم القرآن',lib:'التقسيم-على-الفنون/علوم-القرآن'},
+ {k:'hadith',n:'الحديث ومصطلحه',lib:'التقسيم-على-الفنون/علوم-السنة'},
+ {k:'fiqh',n:'الفقه وقواعده',lib:'التقسيم-على-الفنون/الفقه-وقواعده-وأصوله-والمقاصد'},
+ {k:'usul',n:'أصول الفقه',lib:'التقسيم-على-الفنون/الفقه-وقواعده-وأصوله-والمقاصد/أصول-الفقه'},
+ {k:'lugha',n:'اللغة والنحو',lib:'التقسيم-على-الفنون/اللغة'},
+ {k:'adab',n:'طلب العلم وآدابه',lib:'التقسيم-على-الفنون/رقائق-وأذكار/طلب-العلم-وآدابه'},
+ {k:'baramij',n:'البرامج العلمية الجامعة',lib:'التقسيم-على-البرامج',d:'برامج تجمع متونًا من فنون شتى، كمهمات العلم وأصول العلم.'},
+ {k:'fawaid',n:'فوائد ومقاطع',lib:'مقتطفات-وفوائد',d:'مقاطع قصيرة وأجوبة وفوائد منتقاة.'}];
+const DATA=[["UUdFHxmDMO8gKRJ4gVRU7XLA","كل ما رُفع على قناة الشيخ، الأحدث أولًا",0,"baramij","d",1],["PLMESC_UFcDHIoiIKsk0Zrd8vlaG5W-cG_","مقررات برنامج هداية المتعلم | المستوى الأول",7,"baramij","d",1],["PLMESC_UFcDHIYJLEaAXV2du7ORBnWytnz","كلمات إلى طلاب البرامج العلمية",1,"baramij","d",0],["PLMESC_UFcDHIZE5VB0vbA2wxRdtfTkPzr","الكلمات والمواعظ",3,"adab","d",0],["PLMESC_UFcDHKt8Hkp8URInBJhVUotZdxy","سؤالات برنامج تعليم الحجاج",9,"fawaid","d",0],["PLMESC_UFcDHKONesQKCBrJn3PIsD2m5Ht","شرح (مسند المناسك) | مقسم على المسانيد",31,"fiqh","d",0],["PLMESC_UFcDHIB2Wa_I-g7RFQiY3UBTJlZ","الكلمات والمواعظ (٢)",5,"adab","d",0],["PLMESC_UFcDHJ-XZ5GnucNDqjpeNBozkPe","برنامج تمكين مهمات العلم | الكتاب (15)| نخبة الفكر",15,"hadith","d",1],["PLMESC_UFcDHKKLOI-xeRDOpS4F6l9Ili_","برنامج تمكين مهمات العلم | الكتاب (14) | مقدمة أصول التفسير",7,"tafsir","d",1],["PLMESC_UFcDHKH9d_bh6a6cN4f3Wx66jmS","برنامج مهمات العلم الثاني عشر (1442) بالمدينة - صوتي",12,"baramij","d",1],["PLMESC_UFcDHIFrPMz0Rkoq8ugouM5OmGc","برنامج تمكين مهمات العلم | الكتاب (13) | الورقات",21,"usul","d",1],["PLMESC_UFcDHJDJfntfzHaKsofwem0LWRA","برنامج تمكين مهمات العلم | الكتاب (12) | المقدمة الآجرامية",21,"lugha","d",1],["PLMESC_UFcDHKJpS1NFcOe_zUHbjQNz7Pf","تمكين تأسيس المتعلم 1443 | الكتاب (1) | أعلام السنّة المنشورة",41,"aqeeda","d",1],["PLMESC_UFcDHIyU7PDeUi2R_92ku3mRhYw","برنامج تمكين مهمات العلم | الكتاب (11) | منظومة القواعد الفقهية",10,"fiqh","d",1],["PLMESC_UFcDHI1VwzC3id0c0FweInr8zLz","برنامج هداية المتعلم | الكتاب (٨) | بصيرة الداعي إلى خير المساعي",8,"aqeeda","d",1],["PLMESC_UFcDHKWllJqo2OiajrBJnsLR7CN","برنامج تأسيس المتعلم",17,"baramij","d",1],["PLMESC_UFcDHLW2fbi4Jv-JU1XgVP82WXf","برنامج تمكين مهمات العلم | الكتاب (10) | العقيدة الواسطية",13,"aqeeda","d",1],["PLMESC_UFcDHJP_Rphs1-auhap8rmqV-W9","شرح الأربعين الموضح ما فيها من قواعد الدين",2,"hadith","d",0],["PLMESC_UFcDHLo1J4Ry7kjQKgFrJhhbV1Y","برنامج هداية المتعلم | الكتاب (٧) | الباقيات الصالحات من الأذكار بعد الصلوات",11,"adab","d",1],["PLMESC_UFcDHKw6AJnde7hai_VcQh-LotB","برنامج تمكين مهمات العلم | الكتاب (9) | كشف الشبهات",17,"aqeeda","d",1],["PLMESC_UFcDHISUKG-Gv1bw4C8R-1eq8-R","التعليق على « سنن ابن ماجه » | مقسم على الكتب",1,"hadith","d",0],["PLMESC_UFcDHL3Acg7uK93VIFcM5E9ULKT","التعليق على « موطأ الإمام مالك » | مقسم على الكتب",9,"hadith","d",0],["PLMESC_UFcDHL7pa2HAshhrt6cjuuKRIFu","برنامج تمكين مهمات العلم | الكتاب (8) | كتاب التوحيد",67,"aqeeda","d",1],["PLMESC_UFcDHKBwwcmW78V89z4wK1VYO2t","برنامج هداية المتعلم | الكتاب (٥) |المفتاح في الفقه",9,"fiqh","d",1],["PLMESC_UFcDHJSi78V-_XVLaIM7AjXHpZ6","التعليق على «الوسائل المفيدة للحياة السعيدة» للعلامة ابن سعدي",3,"adab","d",0],["PLMESC_UFcDHLdPh4aHgavNFzkr8RBjEq5","التعليق على (إتحاف المهرة بالكلام على حديث «لا عدوى ولا طيرة») للعلامة الشوكاني",2,"hadith","d",0],["PLMESC_UFcDHJ3Jq0yoF913nI8Y2M6uE-o","برنامج تمكين مهمات العلم | الكتاب (7) | فضل الإسلام",19,"aqeeda","d",1],["PLMESC_UFcDHIRfxlYXj_EuggCOnYuSV8X","التعليق على «زاد الداعية إلى الله» للعلامة ابن عثيمين",3,"aqeeda","d",0],["PLMESC_UFcDHKEiOQUPKZnCh-EKwVybY-e","برنامج هداية المتعلم | الكتاب (٤) | المقدمه فيما على العبد أن يعلمه",4,"aqeeda","d",1],["PLMESC_UFcDHKhDE3G9Rypzv0_reQb6POo","برنامج تمكين مهمات العلم | الكتاب (6) | المقدمة الفقهية الصغرى",12,"fiqh","d",1],["PLMESC_UFcDHKFwq_Ugh0YJM60s1fJKNLJ","برنامج هداية المتعلم | الكتاب (٣) | الآداب العشرة",11,"adab","d",1],["PLMESC_UFcDHJz-7lBATKflNjRqDmuTzh6","برنامج تمكين مهمات العلم | الكتاب (3) | القواعد الأربع",6,"aqeeda","d",1],["PLMESC_UFcDHLyZxu0Sejr5e0QvT4QSKRc","شرح (المواهب الربانية من الآيات القرآنية) للعلامة ابن سعدي",17,"tafsir","d",0],["PLMESC_UFcDHKE3emhCAW8DWHEZIv2JHgO","برنامج تمكين مهمات العلم | الكتاب (٢) | ثلاثة الأصول وأدلتها",11,"aqeeda","d",1],["PLMESC_UFcDHIBO6yY6Ow1J22ifNYjK2Fq","برنامج هداية المتعلم | الكتاب (٢) | معاني الفاتحة وقصار المفصل",24,"tafsir","d",1],["PLMESC_UFcDHJDGCg7qYw-X3izX1BvqF1R","برنامج تمكين مهمات العلم | الكتاب (١) | تعظيم العلم",22,"adab","d",1],["PLMESC_UFcDHK_gvmabHpqbx8fnyZKwRCq","برنامج مهمات العلم الثاني عشر (1442) بالمدينة",35,"baramij","d",1],["PLMESC_UFcDHJITbFn910oIqpBA0enLAT-","التعليق على (الغاية من السماع والرواية) للشيخ صالح العصيمي",7,"hadith","d",0],["PLMESC_UFcDHKp3I3mhquLiYHkTm9V-H0P","التعليق على (حواشي العقيدة الواسطية) للعلامة ابن مانع",6,"aqeeda","d",0],["PLMESC_UFcDHLdzU9z4At__lhcHpv1to9S","التعليق على (الرد على الجهمية) للحافظ ابن منده",5,"aqeeda","d",0],["PLMESC_UFcDHJP1C9G6ylW4LpttKDkVYo7","شرح (منهج السالكين وتوضيح الفقه في الدين) للعلامة ابن سعدي",1,"fiqh","d",1],["PLMESC_UFcDHKhj6vg5QuhBqRCij5J54Yq","التعليق على (فوائد مستنبطة من قصة يوسف) للعلامة ابن سعدي",7,"tafsir","d",0],["PLMESC_UFcDHK0adDKdR6_cI3CbDdYw7JY","التعليق على (تحذير الجمهور من مفاسد شهادة الزور) للعلامة المحمصاني",2,"fiqh","d",0],["PLMESC_UFcDHLtGIqvHSg1hFDKVdXiEaW5","التعليق على (تفريج الكروب في تعزيل الدروب) للعلامة ابن داود",2,"fawaid","d",0],["PLMESC_UFcDHIIIiNIhETmF-712gkTE1TR","التعليق على (سر الاستغفار عقب الصلوات) للعلامة جمال الدين القاسمي",1,"fiqh","d",0],["PLMESC_UFcDHLVhBOxWDIM2iYisIR-u-be","التعليق على(رسالة في بر الوالدين) للعلامة التقي السبكي",1,"fiqh","d",0],["PLMESC_UFcDHJOxdaG2CyStT5Uqo0lKKSO","التعليق على (الوصية الصغرى) لشيخ الإسلام ابن تيمية",2,"adab","d",0],["PLMESC_UFcDHK5zJTv1rFZz3R9Az1g3gC4","التعليق على (الرسالة المغنية في السكوت ولزوم البيوت) للعلامة ابن البناء",2,"adab","d",0],["PLMESC_UFcDHINMbV1SIGew6sp2T46j1lx","الإجابة عن أسئلة برنامج التعليم المستمر",8,"fawaid","d",0],["PLMESC_UFcDHKsc59SUDIh4fdzalnlTgAY","التعليق على (المقصور والممدود) للعلامة ابن دريد",2,"lugha","d",0],["PLMESC_UFcDHK49ujujFzxxeMBay0tFzmh","التعليق على كتاب (التبرج) للعلامة ابن باز",2,"fiqh","d",0],["PLMESC_UFcDHLQK7Drven3dnLJS7W71OvL","التعليق على (صفة صلاة النبي ﷺ) للعلامة ابن عثيمين",5,"fiqh","d",0],["PLMESC_UFcDHIOb6JLhG0tfy_OLqLSpYb8","التعليق على (شرح الأربعين النووية) لابن العطار",7,"hadith","d",0],["PLMESC_UFcDHJpZ6tnvHV2BfzxtDYWI8Wr","التعليق على (الحث على طلب العلم) لأبي هلال العسكري",4,"adab","d",0],["PLMESC_UFcDHI9anGiUx7Fk2i1f_BB4vzr","شرح (تذكرة السامع والمتكلم) لابن جماعة",36,"adab","d",0],["PLMESC_UFcDHKl-9ZnW1Qedz8iarCcybd4","تقريب (شرح معاني الفاتحة وقصار المفصل)",24,"tafsir","d",0],["PLMESC_UFcDHI4YTSIWYW3avlfh54mvK4a","تقريب (شرح تفسير الفاتحة وقصار المفصل)",24,"tafsir","d",0],["PLMESC_UFcDHJ86lDUJ_bkxgOwFp7eIyLi","مجموع شروح (إلهام المغيث في مصطلح الحديث)-5 شروح",5,"hadith","d",0],["PLMESC_UFcDHJBEeoJ5V_Dj1iyxT6M3Hzt","تقريب شرح (عمدة الأحكام) للمقدسي",20,"hadith","d",1],["PLMESC_UFcDHK37nH1fsXv1NIITao_xLmb","تقريب شرح (منظومة القواعد الفقهية)",24,"fiqh","d",0],["PLMESC_UFcDHLN1nhmw7CEp_qhYuy0CnYX","تقريب شرح (كتاب التوحيد)",67,"aqeeda","d",0],["PLMESC_UFcDHL_d9bA1A9gqt9jO9RtuxV3","تقريب شرح (المقدمة الآجرامية)",39,"lugha","d",0],["PLMESC_UFcDHLSS6rXighKFNBWX8DlvZsR","برنامج (تحصين) بالمسجد النبوي",10,"baramij","d",1],["PLMESC_UFcDHLO7I14iMO7t5grszXd0sdy","شرح (صلة الناسك) لابن الصلاح",4,"fiqh","d",1],["PLMESC_UFcDHJX5QJG-xpnFTymWKMi5W6J","شرح (مناسك الحج) لأبي محمد بن عبد السلام",3,"fiqh","d",0],["PLMESC_UFcDHK-BtFxcfU9rj6KETrI-yY1","شرح (جامع المسالك) لابن بليهد",3,"fiqh","d",0],["PLMESC_UFcDHLE45ca7-evCErkqSlP8qEq","شرح (مسند المناسك) لصالح العصيمي",3,"fiqh","d",0],["PLMESC_UFcDHLhhHWr1OmJ0j_jNC6BoHpX","شرح (بغية الناسك) لمحمد البهوتي",3,"fiqh","d",0],["PLMESC_UFcDHKqtF46Hjo8ycTYK50GUeks","شرح (التحقيق والإيضاح) لابن باز",3,"fiqh","d",0],["PLMESC_UFcDHKnO9WRMIPkRHTLKtUzgkwu","مجموع الشروح على كتب العلامة (ابن عثيمين)",17,"fawaid","d",0],["PLMESC_UFcDHLjhU6E8M2kfTFdw9nX-Gh1","مجموع شروح (مختصر في أصول العقائد الدينية) - 9شروح",9,"aqeeda","d",0],["PLMESC_UFcDHLv9lG9KIXrZCR7wsR7b3U2","مجموع شروح (المقدمه فيما على العبد أن يعلمه)-شرحان",2,"aqeeda","d",0],["PLMESC_UFcDHJ0xOunQlF_EVB25w6JRaTH","مجموع شروح (مقدمة في أصول التفسير) - 14 شرحا",18,"tafsir","d",0],["PLMESC_UFcDHI6Wq-evWjXDgW34UHycST_","مجموع شروح (فضل الإسلام) - 35 شرحا",69,"aqeeda","d",0],["PLMESC_UFcDHIs8HJfIbv3sHxhhbQcLGbV","شرح (تخريج أحاديث مشكلة الفقر) للعلامة الألباني",3,"hadith","d",0],["PLMESC_UFcDHL4IW9W3X8hzIRB9hwAfGuT","برنامج الدرس الواحد السادس (1428) بالرياض",4,"baramij","d",0],["PLMESC_UFcDHINE8E7JR4n0YM1dMHK-7Jb","برنامج الدرس الواحد العاشر (1432)",19,"baramij","d",0],["PLMESC_UFcDHLFQF7nko2MtfbVXlFAoy8N","برنامج الدرس الواحد الحادي عشر (1433)",1,"baramij","d",0],["PLMESC_UFcDHKpA2ci9v2cRqKpksYaKrc2","برنامج الدرس الواحد الأول (1423)",5,"baramij","d",0],["PLMESC_UFcDHKBHH3NYAu1u7qFk0pWL6Ps","الشرح المطول لـ(العروة الوثقى)",4,"aqeeda","d",0],["PLMESC_UFcDHJw5nuq7yzNqleBOgAPnonp","برنامج مهمات العلم الحادي عشر (1441) بالمدينة",32,"baramij","d",1],["PLMESC_UFcDHIni-0GsRiUwKENjG8Bcuqo","برنامج اليوم الواحد الأول (1424) بالرياض",3,"baramij","d",0],["PLMESC_UFcDHL6BhHXMaS6cYLTG3FS2IzY","تقريب شرح (الأربعين النووية)",45,"hadith","d",0],["PLMESC_UFcDHJzIjgULiaQJtdcnRpTkSoz","برنامج منتخب الأبواب والفصول الثاني(1430)-الرياض",11,"baramij","d",0],["PLMESC_UFcDHLIPQ8Pd7qOqkYYDNe2yAGP","برنامج منتخب الأبواب والفصول الثالث(1431)-الرياض",11,"baramij","d",0],["PLMESC_UFcDHLa_6YVlbfy8ZdraHXC52ZO","برنامج منتخب الأبواب والفصول الرابع(1432)-الرياض",8,"baramij","d",0],["PLMESC_UFcDHJFLbKX3A4P9AV-S1K-zVnQ","برنامج منتخب الأبواب والفصول الأول(1429)-الرياض",11,"baramij","d",0],["PLMESC_UFcDHJ_y-T-BRvnExas5Kxa83WE","التقريرات على (العقيدة الطحاوية) - الطائف",3,"aqeeda","d",0],["PLMESC_UFcDHKW4v7KVrmO5tmBWsNxMqMf","برنامج الدرس الواحد الثالث (1425)",7,"baramij","d",0],["PLMESC_UFcDHKHShLyM1AJaDHQWzGmx-xv","مجموع شروح (العقيدة الواسطية) - 29 شرح",58,"aqeeda","d",0],["PLMESC_UFcDHJZRg2Lw7gG64guy9Xsnkp0","برنامج الحصن الأمين بالرياض (1437)",17,"baramij","d",0],["PLMESC_UFcDHKNdpROHUdtS0VyZKVSNfaw","شرح (عمدة الأحكام) للحافظ عبد الغني المقدسي",23,"hadith","d",1],["PLMESC_UFcDHIxd_LXZpwVwBE_7-6KYtxT","مجموع شروح(القول السديد فيما يجب على العبيد)-7شروح",7,"aqeeda","d",0],["PLMESC_UFcDHI739ZapVl2nuSP1DkP68Cj","مجموع شروح (نظم حلية طالب العلم الصغير)-شرحان",2,"adab","d",0],["PLMESC_UFcDHJ_ZRNqZ7Vzm001k_Xmt2gl","مجموع شروح(التيسير المجلى نظم القواعدالمثلى)-شرحان",2,"aqeeda","d",0],["PLMESC_UFcDHKr5gNgwmlyQvWVQGKXw6a9","مجموع شروح (العقيدة الطحاوية) - 3 شروح",5,"aqeeda","d",0],["PLMESC_UFcDHLTYbJ7U9YXf-fGe8S9BTpS","مجموع شروح (ثلاثة الأصول وأدلتها) - 40 شرحا",72,"aqeeda","d",0],["PLMESC_UFcDHKohEzQYLIFQjIazr49vyw1","مجموع شروح (مقدمة في أصول التفسير) - 13 شرحا",17,"tafsir","d",0],["PLMESC_UFcDHInthl5HGm7UsCiSji9pPrn","يوم علمي بجامع عثمان بن عفان بحي الوادي بالرياض",3,"baramij","d",0],["PLMESC_UFcDHLviQ6dh38EPMu66hMr5zqn","مجموع شروح (كتاب التوحيد) - 28 شرحا",196,"aqeeda","d",0],["PLMESC_UFcDHJ4pParu9J3l01J-BiIqgvA","برنامج مفاتيح العلم 1438 بـ(بقيق)",3,"baramij","d",0],["PLMESC_UFcDHK9fCYxwtL8Kt8Ku9K3zIcM","برنامج أصول العلم | المستوى الرابع",23,"baramij","d",1],["PLMESC_UFcDHJlR4hJLc7eBdIIPFj-KrOj","البث المباشر المرئي لشرح (عمدة الأحكام) للمقدسي",23,"hadith","d",1],["PLMESC_UFcDHKzTrdUliObeyiynZVJacFO","مجموع شروح(الخلاصة الحسناء في أذكار الصباح)-5شروح",5,"adab","d",0],["PLMESC_UFcDHJmIspi9R1b5jt4sIwZq-fE","مجموع شروح(الباقيات الصالحات من الأذكار بعد)-5شروح",5,"adab","d",0],["PLMESC_UFcDHLegaz2xceNyI5PEJHZvSGR","مجموع شروح (قصيدة في السير إلى الله…) - 6 شروح",6,"adab","d",0],["PLMESC_UFcDHKBmcJSAXbGMRctJfQJ2cBC","مجموع شروح (الآداب العشرة) - 10 شروح",9,"adab","d",0],["PLMESC_UFcDHIxwKsLwj_4QXktah9WCg_a","مجموع شروح (تبصرة القاصد إلى علم المقاصد) - شرحان",2,"usul","d",0],["PLMESC_UFcDHIQNCiBgStrwAts0bg8hQgH","مجموع شروح (الأربعين النووية) - 39 شرحا",107,"hadith","d",0],["PLMESC_UFcDHJJEDSVzAHz1vhbVq3F6auJ","مجموع شروح (الأرجوزة المئية) - شرحان",5,"fiqh","d",0],["PLMESC_UFcDHLP1QRyg16ehvfzU7DEWZj8","شرح (البينة في اقتباس العلم) للعصيمي- 17 شرحا",20,"adab","d",0],["PLMESC_UFcDHK9wUbOsJR1TtGqFePyhsJk","شرح (خلاصة تعظيم العلم) لصالح العصيمي - 7 شروح",14,"adab","d",0],["PLMESC_UFcDHIWlmdZtp_Qq9U8pzjCx6Ap","مجموع شروح (المفتاح في الفقه) - 12 شرحا",11,"fiqh","d",0],["PLMESC_UFcDHL4uMfTJTZ0TdEF-y3-UgbS","مجموع شروح (المبتدأ في الفقه) - 15 شرحا",20,"fiqh","d",0],["PLMESC_UFcDHKs9kOzrNuc_QHaS7535Yni","مجموع شروح (شروط الصلاة وأركانها وواجباتها)-4 شروح",5,"fiqh","d",0],["PLMESC_UFcDHLInPTi0pdVbvNGinGbbs-_","شرح (معاني الفاتحة وقصار المفصل) - 21 شرحا",21,"tafsir","d",0],["PLMESC_UFcDHIi8EQVrMgQZmeKQE8DZJzW","مجموع شروح (تفسير الفاتحة وقصار المفصل) - 17 شرحا",33,"tafsir","d",0],["PLMESC_UFcDHJq3Wih1OUBtg8c1dlzzHw5","برنامج مفاتيح العلم 1433 بـ(مكة المكرمة)",11,"baramij","d",0],["PLMESC_UFcDHK4lRnxwqGd7UlKuRuUiRow","برنامج مفاتيح العلم 1435 بـ(حوطة بني تميم)",12,"baramij","d",0],["PLMESC_UFcDHKb7I5XJIhSvfvt5obWjTTH","برنامج مفاتيح العلم 1438 بـ(تمرة)",10,"baramij","d",0],["PLMESC_UFcDHKI82vO1UWvx_AlkF8ZxFrH","برنامج مفاتيح العلم 1432 بـ(الدوادمي)",8,"baramij","d",0],["PLMESC_UFcDHKztfW8Q87CmUej_yRtWKLI","برنامج مفاتيح العلم 1438 بـ(القويعية)",10,"baramij","d",0],["PLMESC_UFcDHLU3RejxD3Zg803R8XHn0ez","برنامج مفاتيح العلم 1433 بـ(الخرج)",10,"baramij","d",0],["PLMESC_UFcDHKyLJU05FbdDt5bMou5w1nb","برنامج مفاتيح العلم 1438 بـ(البجادية)",9,"baramij","d",0],["PLMESC_UFcDHL6dYnzF1xXOaO-lx22V-Ul","تقريب محاضرة (منارات في تأصيل العلوم الشرعية)",22,"adab","d",0],["PLMESC_UFcDHJ6PKkUwItu71xb305PRiHh","تقريب شرح (بلوغ القاصد جل المقاصد) للعلامة البعلي",11,"fiqh","d",0],["PLMESC_UFcDHLxStZAcmOpeHNo26pEAcgG","مجموع شروح (خلاصة مقدمة في أصول التفسير) - 5 شروح",5,"tafsir","d",0],["PLMESC_UFcDHIBjDqgysT0-9aKZGktaeqF","تقريب شرح (خلاصة تعظيم العلم) - عرعر",21,"adab","d",0],["PLMESC_UFcDHKcezwOb-zL6_Fi6alZDXUE","تقريب شرح (الآداب العشرة)",11,"adab","d",0],["PLMESC_UFcDHJQ7U5agNiF7V3kzLSNMQ-1","البث المباشر لشرح (صلة الناسك في صفة المناسك)",4,"fiqh","d",1],["PLMESC_UFcDHIriqWJhWWuSW-vNsk5UCX3","تقريب شرح (التحقيق والإيضاح) للعلامة ابن باز",19,"fiqh","d",0],["PLMESC_UFcDHJ_tdRRPvymkscQ7qLeZYz9","مجموع شروح (المعجم المختار من الأحاديث النبوية القصار) - 5 شروح",6,"hadith","d",0],["PLMESC_UFcDHLNMWFJI65l_prOm1hWyusy","دروس التفسير بالمسجد النبوي",24,"tafsir","d",1],["PLMESC_UFcDHKdYiiYuulYzhYXbTeXGCBW","اللقاءات العلمية",4,"baramij","d",0],["PLMESC_UFcDHKtSgCouNtFOPASHDMIpCrA","برنامج أساس العلم 1432 (الدمام)",18,"baramij","d",0],["PLMESC_UFcDHK5vz2OtyjWdFFzJ2REhpja","برنامج أساس العلم 1438 (عرعر)",18,"baramij","d",0],["PLMESC_UFcDHJuAEOwLusI5xEYH_xf4mDj","برنامج أساس العلم 1435 (خميس مشيط)",21,"baramij","d",0],["PLMESC_UFcDHLREYBF9sqmML1qQBMAbo91","برنامج أساس العلم 1436 (حائل)",22,"baramij","d",0],["PLMESC_UFcDHIi6GsuF2Yz54iPL300PUgk","الشرح المطول على (منظومة القواعد الفقهية)",4,"fiqh","d",0],["PLMESC_UFcDHLWhe4RrjagvPRt4ktuyxwL","الشرح المطول على (الورقات)",7,"usul","d",0],["PLMESC_UFcDHLY03EbVL6GfFhLM7frhjH0","الشرح المطول على (المقدمة الآجرامية)",6,"lugha","d",0],["PLMESC_UFcDHK5ieo0Am2vQ2KYjsO2lcu1","برنامج أساس العلم 1434 (جدة)",19,"baramij","d",0],["PLMESC_UFcDHK2xE1Qgd1VcQHwiyNGZ5ke","برنامج أساس العلم 1437 (تبوك)",17,"baramij","d",0],["PLMESC_UFcDHI47eixRmK6STlssASffKbi","برنامج أساس العلم 1433 (البكيرية)",18,"baramij","d",0],["PLMESC_UFcDHJLoc27LORA-YOH8k4l5X-g","برنامج أساس العلم 1437 (الكويت)",19,"baramij","d",0],["PLMESC_UFcDHJC9k-mc0c3Pa1kc8z5tsbm","برنامج الدرس الواحد التاسع (1431) بالرياض",7,"baramij","d",0],["PLMESC_UFcDHIpUCEu2fSiWURS6xkaGsUO","برنامج أساس العلم 1439 (نجران)",19,"baramij","d",1],["PLMESC_UFcDHIDq2YqnyaTnQ5Azkvcg_rN","برنامج أساس العلم 1437 (الأحساء)",22,"baramij","d",0],["PLMESC_UFcDHImKorXWhCTCYdXxMO26q1J","برنامج السرد المجود السابع 1440 (صحيح البخاري)",29,"hadith","d",1],["PLMESC_UFcDHL-4W1xf61GHB33lUkOZ9fA","شرح (مقاصد الصوم) للعز بن عبد السلام",4,"fiqh","d",0],["PLMESC_UFcDHL-Hrv7UFemBGevZshhDXEn","برنامج اليوم الواحد الثاني (1425) بالرياض",7,"baramij","d",0],["PLMESC_UFcDHL8hxYfNTM8nMKpeDpkpQhP","شرح (العالي الرتبة في شرح نظم النخبة) للشمني",4,"hadith","d",0],["PLMESC_UFcDHL9a8sHUAAwX8l0QtQYbebj","شرح (تعليم المتعلم طريق التعلم) للزرنوجي",3,"adab","d",0],["PLMESC_UFcDHKzv_Hr7IhgxyNv_7tHZxRz","شرح (الاعتقاد الخالص من الشك والانتقاد)لابن العطار",3,"aqeeda","d",0],["PLMESC_UFcDHKRyjEIYhX6KMXZgTEbcx5S","شرح (شرح نظم الورقات) للولاتي",5,"usul","d",0],["PLMESC_UFcDHJXENC4zBayKhVUNepBsWwi","شرح (تعليقات القاري على ثلاثيات البخاري)",4,"hadith","d",0],["PLMESC_UFcDHLStrluQpmq_2YjLkg-cIjS","شرح (النفحة الحسنية… في أحوال الورثة الأربعينية)",3,"fiqh","d",0],["PLMESC_UFcDHKFQ1VIKOtb77oFjv88TeH1","شرح (الرسالة التبوكية) لابن القيم",9,"adab","d",0],["PLMESC_UFcDHJ108M9WX5wgQxLDwJDIInv","شرح (التوضيح المفيد لمسائل كتاب التوحيد) للدويش",3,"aqeeda","d",0],["PLMESC_UFcDHIOHGxoUlj8q9fKW6krI5cl","شرح (آداب طالب الحديث) للشيخ بكر أبو زيد",3,"hadith","d",0],["PLMESC_UFcDHLMVbEEk2zV5mJIY_1JK-7u","شرح (النكت على تقريب التهذيب) للعلامة ابن باز",3,"hadith","d",0],["PLMESC_UFcDHLKRVVEH7QojOj_-1GI_76U","شرح (صفوة الملح بشرح منظومة البيقوني في المصطلح)",3,"hadith","d",0],["PLMESC_UFcDHKokeEOiB7PnEwIzAaaO2ju","شرح التوبيخ والتنبيه لأبي الشيخ الأصبهاني",3,"adab","d",0],["PLMESC_UFcDHKL0jXBc6NnEzR0aFX_u7jD","شرح (القصد السديد على كتاب التوحيد) لفيصل آل مبارك",3,"aqeeda","d",0],["PLMESC_UFcDHL89B3YjxhIK35Y8qYE2Nz1","شرح (دروس من القرآن الكريم) للشيخ صالح الفوزان",3,"tafsir","d",0],["PLMESC_UFcDHKUgRB50zPTnu8Mh-X_gKIn","مجموع شروح (نخبة الفكر) - 13 شرحا",27,"hadith","d",0],["PLMESC_UFcDHIdKUq6kFEXvrrRhZsjvAsZ","مجموع شروح (منظومة القواعد الفقهية) - 15 شرحا",18,"fiqh","d",0],["PLMESC_UFcDHIk3gwW4bTmCsOw50_OzrLm","مجموع شروح (الورقات في أصول الفقه) ـ 14 شرحا",35,"usul","d",0],["PLMESC_UFcDHIXrQI5eczB4FDUwjtQ8Y_U","مجموع شروح (المقدمة الفقهية الصغرى) - 15 شرحا",37,"fiqh","d",0],["PLMESC_UFcDHKxUG-MUOAe1daXRZbMFSam","مجموع شروح (كشف الشبهات) - 15 شرحا",26,"aqeeda","d",0],["PLMESC_UFcDHIcxwx8UPjNaM37a9IkIqVx","شرح (تعظيم العلم) لصالح العصيمي - 15 شرحا",24,"adab","d",0],["PLMESC_UFcDHLUjcVjAcA0HijhjOt9euV6","مجموع شروح (المقدمة الآجرامية) - 13 شرحا",32,"lugha","d",0],["PLMESC_UFcDHIYmiSsqQknfOv0DRPYOCUn","مجموع شروح (القواعد الأربع) - 17 شرحا",17,"aqeeda","d",0],["PLMESC_UFcDHL_Yt9SeOfyS_S2IvNhR1lw","المجالس المدنية",18,"baramij","d",0],["PLMESC_UFcDHLGMd7YuHjUssvKNH38U6bh","شرح (القواعد والأصول الجامعة) لابن سعدي",7,"fiqh","d",0],["PLMESC_UFcDHLwbs1qX5TTfFtUVYgn8ias","شرح (العدة شرح العمدة) لبهاء الدين المقدسي",10,"fiqh","d",0],["PLMESC_UFcDHLIy778jzDJwtse4LwJY8o_","شرح (إبطال التنديد) لحمد بن عتيق",10,"aqeeda","d",0],["PLMESC_UFcDHIiAetAOxhVr0JypDBXOpyV","اليوم العلمي بالمسجد النبوي (١٤٣٤)",4,"baramij","d",0],["PLMESC_UFcDHLEcp18Ln5G41lLYWr2jcQb","يوم علمي بمدينة (البكيرية) ١٤٣٥",2,"baramij","d",0],["PLMESC_UFcDHI0MrPVnj0-YtAPq8t6Rc6A","برنامج الدرس الواحد الثاني (1424)",7,"baramij","d",0],["PLMESC_UFcDHL9uA6F5ZGBem_jKLE3wWFr","الدورة الفقهية المكثفة بالكويت (١٤٣٣)",6,"fiqh","d",0],["PLMESC_UFcDHJd6xCuvCzgAJui2_nrbcVq","برنامج الدرس الواحد الخامس (1427) بالرياض",11,"baramij","d",0],["PLMESC_UFcDHJ2eb2z73ZTY4Js-siYIjH3","برنامج (البداية في علوم الغاية)",4,"baramij","d",0],["PLMESC_UFcDHIPqpFUQfpqwLIqcvN1fZgU","يوم علمي بمدينة (طريف) ١٤٣٧",2,"baramij","d",0],["PLMESC_UFcDHK-csmfye_4yUhyBvpIvK_y","برنامج عاشوراء",6,"fiqh","d",0],["PLMESC_UFcDHLoeMIgsTMNNglE8rh0aPOs","برنامج (مناسك الحج)",26,"fiqh","d",0],["PLMESC_UFcDHI6x0QYR5b1Sa1ptOxXEK8o","برنامج (المواعظ الحسان)",4,"adab","d",0],["PLMESC_UFcDHLQ_NpFhKRkkFvR7PeOEokg","برنامج الدرس الواحد الثامن (1430) بالرياض",34,"baramij","d",0],["PLMESC_UFcDHKQZaqpSCfsmxZDoUNUC-PY","الكلمات والمواعظ (٣)",5,"adab","d",0],["PLMESC_UFcDHLyz5lxFOrYZmB96ebbp9Gg","برنامج الدرس الواحد الرابع (1426) بالرياض",5,"baramij","d",0],["PLMESC_UFcDHI5bzx4ObzdtfHbUO2vVje7","برنامج (أحكام الصيام)",3,"fiqh","d",0],["PLMESC_UFcDHKM9sEFiVZrP2B56oVQiCZg","الدرس الشهري بالدمام (1434)",10,"baramij","d",0],["PLMESC_UFcDHKxuHZgwjmdTskViwUGRLai","برنامج الدرس الواحد السابع (1429) بالرياض",31,"baramij","d",0],["PLMESC_UFcDHKDnNtDoX26CKT5AH6aCvsA","برنامج اليوم الواحد الثامن 1431 (الرياض)",19,"baramij","d",0],["PLMESC_UFcDHJAmI-f67nxmxfEPl5JHKU4","برنامج اليوم الواحد العاشر 1434 (الرياض)",16,"baramij","d",0],["PLMESC_UFcDHK9xVLeGxp6j9melhIInHS4","برنامج مهمات العلم الرابع (1434) بالمدينة",34,"baramij","d",0],["PLMESC_UFcDHI3EUvwh5ERT2n4jc4NoYYm","برنامج مهمات العلم الثالث (1433) بالمدينة",34,"baramij","d",0],["PLMESC_UFcDHLa70g5Q16daviIuNaRFOMm","برنامج اليوم الواحد التاسع 1432 (الرياض)",27,"baramij","d",0],["PLMESC_UFcDHIwwxZsXfCLqK1AtzLP1nQI","برنامج مهمات العلم الثاني (1432) بالمدينة",30,"baramij","d",0],["PLMESC_UFcDHJ4kX9LK0moL_g6pmI7cAW7","برنامج مهمات العلم الأول (1431) بالمدينة",27,"baramij","d",0],["PLMESC_UFcDHKBJ1PsBYhUaAQQ3U4vJ1l1","برنامج تعليم الحجاج الخامس (1438) بمكة",25,"fiqh","d",0],["PLMESC_UFcDHJMxvxMoHzLbwy3wIATGoR3","برنامج تعليم الحجاج الرابع (1436) بمكة",9,"fiqh","d",0],["PLMESC_UFcDHKj3RoptSgyWUxE3PNWv8IR","برنامج تعليم الحجاج الأول (1433) بمكة",12,"fiqh","d",0],["PLMESC_UFcDHI816Yp1UXzc2qrKgMb28-f","برنامج تعليم الحجاج الثالث (1435) بمكة",22,"fiqh","d",0],["PLMESC_UFcDHJ3dj26fgUNB7GykvurRlUl","برنامج تعليم الحجاج الثاني (1434) بمكة",18,"fiqh","d",0],["PLMESC_UFcDHJgHqMacbenbC0LxfEDpAf-","برنامج تعليم الحجاج الأول (1433) بالمدينة",3,"fiqh","d",0],["PLMESC_UFcDHJn0PipKpihTwvfqP6Kfyk4","تقريب (شرح الغرر من موقوف الأثر)",41,"hadith","d",0],["PLMESC_UFcDHJpOZDWhj9c7CuB02wv2f1e","برنامج منافع العلم الأول (1436) بمكة",15,"baramij","d",0],["PLMESC_UFcDHKJND2w7CjkP6Q9dMHOpnyw","برنامج (الدرس الواحد في الحرمين الشريفين)",4,"baramij","d",0],["PLMESC_UFcDHL0QOjt8-hwY7-Kh_ljG5Gr","تقريب شرح (تبصرة القاصد إلى علم المقاصد)",9,"usul","d",0],["PLMESC_UFcDHI-JrpOb1tpRYFZ1xx367IW","برنامج أصول العلم|المستوى الأول-السنة السادسة",4,"baramij","d",0],["PLMESC_UFcDHLdzpTeI1-4yC3aDKbBjxtI","شرح (تفسير السعدي)",9,"tafsir","d",1],["PLMESC_UFcDHI42WxP1eyVhhlaD9YzLcMb","الخطب المنبرية",94,"fawaid","d",0],["PLMESC_UFcDHL_0CMWJPJBB6IrIQED-rKU","برنامج (تيسير العلم) الثاني ١٤٣١ (الرياض)",39,"baramij","d",0],["PLMESC_UFcDHKI4naSBjEdvBIsFWbaQ2Bg","تقريب (شرح المفتاح في الفقه)",9,"fiqh","d",0],["PLMESC_UFcDHIM3a5cbRA0EafN3DQjAi4K","تقريب (شرح العروة الوثقى)",8,"aqeeda","d",0],["PLMESC_UFcDHIGudPo7nwyG7A8DdejAryG","برنامج (تيسير العلم) الأول ١٤٣٠ (الرياض)",37,"baramij","d",0],["PLMESC_UFcDHLbOoKsIr4OhDAtxZyROwHN","برنامج (تيسير العلم) ١٤٢٩ (الرياض)",11,"baramij","d",0],["PLMESC_UFcDHJTGHS_NSPZDKdO5mTeF2I7","برنامج أصول العلم|المستوى الأول-السنة الخامسة",32,"baramij","d",0],["PLMESC_UFcDHKNiAkyirs2h2TKf_v9wLLj","برنامج مهمات العلم الخامس (1435) بالمدينة",39,"baramij","d",0],["PLMESC_UFcDHJ2TXmGfrnH3Cx2xTuPLfgY","برنامج مهمات العلم السادس (1436) بالمدينة",35,"baramij","d",0],["PLMESC_UFcDHJjtl5dGw9QGMHvwIJqebXD","برنامج أصول العلم|المستوى الأول-السنة الثالثة",35,"baramij","d",0],["PLMESC_UFcDHIxeZmsTbd7EE2TFaO8CQfe","برنامج أصول العلم|المستوى الأول-السنة الثانية",31,"baramij","d",0],["PLMESC_UFcDHLLvIFJX6lwkxG4IwZTR7gO","برنامج أصول العلم|المستوى الأول-السنة الأولى",25,"baramij","d",0],["PLMESC_UFcDHI_vwnJAZKKij7_YZHDc14A","برنامج سرد المطولات | الكتاب الأول (الدرر السنية في الأجوبة النجدية)",1,"fawaid","d",0],["PLMESC_UFcDHJMJq-NTv_rbe2jFg-MRaxu","برنامج مهمات العلم العاشر (1440) بالمدينة",34,"baramij","d",1],["PLMESC_UFcDHKERFs9VJgTS6TY3N5U-Dih","برنامج أصول العلم | المستوى الأول - السنة الرابعة",39,"baramij","d",0],["PLMESC_UFcDHKHeisGQSxCD3jsGGoDiDNP","برنامج السرد المجود السادس 1439 (صحيح مسلم)",20,"hadith","d",1],["PLMESC_UFcDHIxnbXzH69YXQUuepGCQKrA","برنامج السرد المجود الخامس 1437 (سنن أبي داود)",17,"hadith","d",0],["PLMESC_UFcDHIFSQAWGvXNzEQW50ba3jfm","برنامج السرد المجود الرابع 1436 (سنن الترمذي)",18,"hadith","d",0],["PLMESC_UFcDHKWTKjRSUTG1ayMsKTqN96z","برنامج السرد المجود الثالث 1435 (سنن النسائي)",15,"hadith","d",0],["PLMESC_UFcDHLNc93ax_yxDTDpSrNM62qO","برنامج السرد المجود الثاني 1434 (سنن ابن ماجه)",19,"hadith","d",0],["PLMESC_UFcDHJ8NCTnBIwU2b2CAAu5_IxA","برنامج السرد المجود الأول 1433 (الموطأ)",13,"hadith","d",0],["PLMESC_UFcDHLQffEeAm4inl0WXBVrPyoM","برنامج جمل العلم الخامس بالإمارات (1437)",14,"baramij","d",0],["PLMESC_UFcDHJQxWwL2oXPDrocGsCccRe7","برنامج جمل العلم الرابع بالبحرين (1437)",15,"baramij","d",0],["PLMESC_UFcDHLTNT8_wpo6WOROGRLh4KQA","برنامج جمل العلم الثالث بقطر (1434)",12,"baramij","d",0],["PLMESC_UFcDHJ9J1XiW2lhD1JqaogYFmQP","برنامج جمل العلم الثاني بالمدينة النبوية (1432)",12,"baramij","d",0],["PLMESC_UFcDHJMlXemkUDCKyIOVdWZmKcY","برنامج جمل العلم الأول بالكويت (1432)",13,"baramij","d",0],["PLMESC_UFcDHIlnHYx0RXKf4qMYAN-Fhla","برنامج الكتاب الواحد | الكتاب الأول (فتح المجيد)",43,"baramij","d",0],["PLMESC_UFcDHI1hKVGqbZV9iwhdskpBI6h","برنامج أصول العلم | المستوى الثاني",50,"baramij","d",1],["PLMESC_UFcDHLM6Nq5NMyfEsfNsoY0oXnC","برنامج مهمات العلم السابع (1437) بالمدينة",38,"baramij","d",0],["PLMESC_UFcDHLu3y2qxQIWplVFLAL_Cg0k","برنامج مهمات العلم الثامن (1438) بالمدينة",35,"baramij","d",0],["PLMESC_UFcDHIHB3jzAUoO1qvLszvU_iSb","المحاضرات العلمية",37,"baramij","d",0],["PLMESC_UFcDHJGJ9oQ-tLjgo5ZiVxAKR1M","برنامج مهمات العلم التاسع (1439) بالمدينة",35,"baramij","d",1],["PLMESC_UFcDHLrl1M1PGZ7SqR5w0100Qvq","شرح (قرة العين بشرح ورقات إمام الحرمين) للحطاب الرعيني",28,"fawaid","d",0],["PLMESC_UFcDHI8GfWraZgAveQsHcT0dgO_","شرح (أعلام السنة المنشورة) لحافظ الحكمي",38,"aqeeda","d",0],["PLMESC_UFcDHLBOo0qtRot3FXYMouumVFi","تقريب (شرح منهج السالكين لابن سعدي)",84,"fiqh","d",1],["PLMESC_UFcDHK--3ayFddlBp6jZpfc-e0q","شرح (تعليم الأحب أحاديث النووي وابن رجب) لفيصل آل مبارك",20,"hadith","d",0],["PLMESC_UFcDHIzq7OoarR17kf1AZSPbbIO","شرح (فتح الرحيم الملك العلام) لابن سعدي",11,"fiqh","d",0],["PLMESC_UFcDHJdoMr6hI9KiVu1JbkrVqbn","شرح (بلوغ القاصد جل المقاصد) للبعلي",61,"fiqh","d",0],["PLMESC_UFcDHJ3Cng44XyrQ2c9MOJoecFD","برنامج (صيانة العلم) بالطائف",8,"baramij","d",0],["PLMESC_UFcDHKuP09mvgGkFiBHeeLPAxwm","برنامج (جواهر العلم) بالطائف",8,"baramij","d",0],["PLMESC_UFcDHJ4v82J7e3N0yRv7aY3Kl4k","برنامج رؤوس العلم ـ السنة الأولى ١٤٣٨ (الطائف)",5,"baramij","d",0],["PLMESC_UFcDHIKS2PI7rndyXx9-1jF6PdI","البث المباشر المرئي لشرح (منهج السالكين) لابن سعدي",26,"fiqh","d",1],["PLMESC_UFcDHLC9qxmuydrKyGcENAZYCHW","برنامج أصول العلم | المستوى الثالث",1,"baramij","d",1],["PLMESC_UFcDHLY-v-Rk-88hyq6oLRCPWbN","شرح (القول المنير في علم أصول التفسير) للزين المكي",10,"tafsir","d",0]];
+const FIX=[['قرة العين','usul'],['سرد المطولات','aqeeda'],['مجموع الشروح على كتب','aqeeda'],['تفريج الكروب','fiqh'],['الخطب المنبرية','adab'],['آداب طالب الحديث','adab']];
+const RANK={aqeeda:[['على العبد أن يعلمه'],['ثلاثة الأصول'],['القواعد الأربع','القريض'],['فضل الإسلام'],['كتاب التوحيد','إبطال التنديد','التوضيح المفيد','القصد السديد','فتح المجيد'],['كشف الشبهات'],['العروة الوثقى','بصيرة الداعي','زاد الداعية'],['القول السديد','أصول العقائد'],['الواسطية'],['القواعد المثلى','القواعدالمثلى'],['الطحاوية'],['أعلام السن'],['الجهمية','الاعتقاد الخالص'],['الدرر السنية'],['ابن عثيمين']],
+tafsir:[['معاني الفاتحة'],['تفسير الفاتحة'],['دروس من القرآن'],['خلاصة مقدمة'],['أصول التفسير'],['القول المنير'],['المواهب الربانية','قصة يوسف'],['تفسير السعدي'],['دروس التفسير']],
+hadith:[['الأربعين النووية','الأربعين الموضح'],['المعجم المختار'],['عمدة الأحكام'],['تعليم الأحب'],['البيقوني','صفوة الملح'],['نخبة','النخبة','إلهام المغيث'],['موقوف الأثر'],['التهذيب','ثلاثيات','السماع والرواية','مشكلة الفقر','لا عدوى'],['السرد','سنن','موطأ']],
+fiqh:[['المبتدأ'],['المفتاح في الفقه'],['المقدمة الفقهية','شروط الصلاة','صفة صلاة'],['منظومة القواعد الفقهية'],['بلوغ القاصد'],['العدة شرح العمدة'],['منهج السالكين'],['فتح الرحيم'],['القواعد والأصول الجامعة'],['الأرجوزة المئية','الورثة'],['المناسك','الناسك','المسالك','التحقيق والإيضاح','الحج'],['الصيام','الصوم','عاشوراء'],['بر الوالدين','الاستغفار','التبرج','شهادة الزور','تفريج الكروب'],['الدورة الفقهية']],
+usul:[['الورقات'],['قرة العين'],['تبصرة القاصد'],['الفروق']],
+lugha:[['الآجرامية','الآجرومية'],['الإعراب'],['المقصور']],
+adab:[['خلاصة تعظيم'],['تعظيم العلم'],['الآداب العشرة'],['الخلاصة الحسناء','الباقيات الصالحات'],['البينة','بهجة الطلب','آداب طالب الحديث'],['حلية'],['منارات','تعليم المتعلم','الحث على طلب'],['تذكرة السامع'],['السير إلى الله'],['التبوكية','الوصية','الوسائل المفيدة','الرسالة المغنية','التوبيخ'],['الكلمات والمواعظ','المواعظ الحسان'],['الخطب المنبرية']],
+baramij:[['هداية المتعلم'],['تأسيس المتعلم'],['البداية في علوم الغاية'],['مفاتيح العلم'],['أساس العلم'],['أصول العلم'],['مهمات العلم'],['تيسير العلم'],['جمل العلم'],['منافع العلم'],['اليوم الواحد'],['الدرس الواحد'],['منتخب الأبواب'],['رؤوس العلم','جواهر العلم','صيانة العلم'],['الحصن الأمين','تحصين'],['الكتاب الواحد'],['السرد'],['المجالس المدنية','يوم علمي','اليوم العلمي','الدرس الشهري'],['المحاضرات','اللقاءات','كلمات إلى']],
+fawaid:[['سؤالات'],['أسئلة']]};
+const rankOf=s=>{const L=RANK[s.f]||[];for(let i=0;i<L.length;i++)if(L[i].some(w=>s.t.includes(w)))return i;return 99};
+const ORD={'الأول':1,'الأولى':1,'الثاني':2,'الثانية':2,'الثالث':3,'الثالثة':3,'الرابع':4,'الرابعة':4,'الخامسة':5,'السادسة':6};
+const yrOf=s=>{const L=s.t.match(/المستوى\s*([^\s|\-]+)/),Y=s.t.match(/السنة\s+(\S+)/);if(L&&ORD[L[1]])return ORD[L[1]]*10+(Y&&ORD[Y[1]]||0);const m=s.t.match(/14\d\d/);return m?+m[0]:9999};
+const BASE=DATA.map(([id,t,n,f,s,nw],i)=>{const fx=FIX.find(([w])=>t.includes(w));return {id,t,n,f:fx?fx[1]:f,s,nw,i}}).map(x=>({...x,r:rankOf(x)})).sort((a,b)=>a.r-b.r||(a.f==='baramij'?yrOf(a)-yrOf(b):0)||a.i-b.i);
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ar=n=>Number(n).toLocaleString('ar-EG');
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem('osm:'+k))??d}catch(e){return d}};
+const save=(k,v)=>{try{localStorage.setItem('osm:'+k,JSON.stringify(v))}catch(e){}};
+let V=load('v',{}),PL=load('pl',{}),CUSTOM=load('custom',[]),LAST=load('last',null);
+let fan='all',q='',src='all';
+const all=()=>[...BASE,...CUSTOM.map(c=>({...c,mine:1}))];
+const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',2600)};
+const thumb=id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`;
+const fmt=s=>{s=Math.round(s||0);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return(h?h+':'+String(m).padStart(2,'0'):m)+':'+String(x).padStart(2,'0')};
+
+function seriesProg(id){const ids=PL[id];if(!ids||!ids.length)return null;let done=0,p=0;for(const v of ids){const o=V[v];if(!o)continue;if(o.done){done++;p+=1}else if(o.d)p+=Math.min(o.t/o.d,1)}return{n:ids.length,done,pct:p/ids.length}}
+
+function stats(){
+ const vids=new Set();Object.values(PL).forEach(a=>a.forEach(v=>vids.add(v)));
+ let secs=0,done=0;for(const k in V){secs+=V[k].t||0;if(V[k].done)done++}
+ $('#sS').textContent=ar(all().length);$('#sL').textContent=ar(BASE.reduce((a,s)=>a+(s.n||0),0));
+ $('#sH').textContent=ar(Math.floor(secs/3600));$('#sD').textContent=ar(done);
+ const pct=vids.size?Math.round(done/vids.size*100):0;
+ $('#ring').style.strokeDashoffset=377-377*pct/100;$('#pct').textContent='٪'+ar(pct);
+ $('#pctL').textContent=done?'من الدروس التي فتحتها':'لم تبدأ بعد';
+}
+
+function renderResume(){
+ const box=$('#resume');const s=LAST&&all().find(x=>x.id===LAST.pl);
+ if(!s||!LAST.vid){box.innerHTML='';return}
+ const o=V[LAST.vid]||{};
+ box.innerHTML=`<div class="resume"><img src="${thumb(esc(LAST.vid))}" alt=""><div><span>تابع من حيث توقفت</span><b>${esc(o.ti||s.t)}</b><span>${esc(s.t)}${o.t?' · عند '+fmt(o.t):''}</span></div><button class="btn solid" data-open="${esc(s.id)}">تابع</button></div>`;
+}
+
+function renderChips(){
+ const cnt=k=>all().filter(s=>s.f===k).length;
+ $('#chips').innerHTML=[{k:'all',n:'الكل'},...FANS].map(f=>`<button class="chip" data-f="${f.k}" aria-pressed="${fan===f.k}">${esc(f.n)}<i>${ar(f.k==='all'?all().length:f.k==='new'?all().filter(s=>s.nw).length:cnt(f.k))}</i></button>`).join('');
+}
+
+function card(s){
+ const p=seriesProg(s.id),F=FANS.find(f=>f.k===s.f);
+ const w=p?Math.round(p.pct*100):0;
+ const info=p?`${ar(p.done)} من ${ar(p.n)} درسًا`:'افتحها لتحميل دروسها';
+ return `<article class="card"><span class="tag">${esc(F?F.n:'')}</span><h3>${esc(s.t)}</h3><span class="by">${s.mine?'أضفتها أنت':'قناة الشيخ'}${s.n?' · '+ar(s.n)+' مقطعًا':''}</span>
+ <div class="meter" aria-label="التقدم ${w}%"><i style="width:${w}%"></i></div>
+ <div class="row"><span>${info}${p&&w?' · ٪'+ar(w):''}</span><button data-open="${esc(s.id)}">${p&&p.pct>0?'تابع':'ابدأ'}</button></div>
+ ${s.mine?`<button class="x" data-del="${esc(s.id)}">حذف هذه السلسلة</button>`:''}</article>`;
+}
+
+function renderList(){
+ const qq=q.trim();
+ const match=s=>(fan!=='new'||s.nw)&&(!qq||(s.t+' '+(s.a||'')).includes(qq)||(PL[s.id]||[]).some(v=>V[v]&&V[v].ti&&V[v].ti.includes(qq)));
+ const fans=fan==='all'||fan==='new'?FANS:FANS.filter(f=>f.k===fan);
+ let html='';
+ for(const f of fans){
+  const items=all().filter(s=>s.f===f.k&&match(s));
+  if((qq||fan==='all'||fan==='new')&&!items.length)continue;
+  html+=`<h2>${esc(f.n)}</h2><p class="sub">${f.d?esc(f.d)+' ':''}${f.k!=='baramij'&&f.k!=='fawaid'?'مرتبة من المتون الصغرى إلى الكبرى. ':''}<a class="lib" href="${LIB+f.lib}" target="_blank" rel="noopener">متون هذا الفن وكتبه في مكتبة الشيخ ←</a></p><div class="grid">`;
+  const lim=fan==='all'&&!qq?6:1e9;html+=items.length?items.slice(0,lim).map(card).join('')+(items.length>lim?`<button class="btn" data-f="${f.k}" style="grid-column:1/-1;justify-self:center">عرض كل ما في ${esc(f.n)} (${ar(items.length)})</button>`:''):`<div class="empty">لم تُضف سلاسل في هذا الفن بعد.<br><button class="btn" data-add="${f.k}" style="margin-top:10px">أضف سلسلة في ${esc(f.n)}</button><br><small>وتجد كثيرًا من متونه ضمن «البرامج العلمية الجامعة».</small></div>`;
+  html+='</div>';
+ }
+ $('#list').innerHTML=html||`<p class="empty">لا نتائج لـ«${esc(qq)}». جرّب كلمة أخرى، أو أضف السلسلة بنفسك.</p>`;
+}
+function renderSrc(){$('#srcs').innerHTML=[['all','كل المصادر'],['d','دروس الشيخ الكاملة'],['q','قطوف العصيمي']].map(([k,n])=>`<button class="chip" data-src="${k}" aria-pressed="${src===k}">${n}</button>`).join('')}
+const renderAll=()=>{stats();renderResume();renderChips();renderList()};
+
+/* ===== المشغّل ===== */
+let player=null,apiReady=false,cur=null,curVid=null,poll=null,queue=null;
+window.onYouTubeIframeAPIReady=()=>{apiReady=true;if(queue){const s=queue;queue=null;openSeries(s)}};
+const tag=document.createElement('script');tag.src='https://www.youtube.com/iframe_api';document.head.appendChild(tag);
+
+function openSeries(s){
+ cur=s;$('#view').classList.add('on');document.body.style.overflow='hidden';
+ $('#vt').textContent=s.t;$('#vy').href='https://www.youtube.com/playlist?list='+encodeURIComponent(s.id);
+ $('#lessons').innerHTML=PL[s.id]?'':'<li class="note">جارٍ تحميل الدروس…</li>';
+ if(PL[s.id])renderLessons();
+ $('#now').textContent='';
+ if(location.hash!=='#play')history.pushState(null,'','#play');
+ if(!apiReady){queue=s;$('#now').textContent='جارٍ تحميل مشغّل يوتيوب…';return}
+ let idx=0,start=0;
+ if(LAST&&LAST.pl===s.id&&PL[s.id]){const i=PL[s.id].indexOf(LAST.vid);if(i>=0){idx=i;const o=V[LAST.vid];if(o&&!o.done)start=Math.floor(o.t||0)}}
+ const cue=()=>player.cuePlaylist({listType:'playlist',list:s.id,index:idx,startSeconds:start});
+ if(!player){player=new YT.Player('player',{playerVars:{playsinline:1,rel:0,modestbranding:1,hl:'ar'},events:{onReady:cue,onStateChange:onState,onError:()=>toast('تعذّر تشغيل هذا الدرس؛ جرّب درسًا آخر')}})}
+ else cue();
+ clearInterval(poll);let tries=0;
+ poll=setInterval(()=>{let ids=null,pid=null;try{ids=player&&player.getPlaylist&&player.getPlaylist();pid=player.getPlaylistId&&player.getPlaylistId()}catch(e){}
+  if(ids&&ids.length&&(!pid||pid===s.id)){clearInterval(poll);PL[s.id]=ids;save('pl',PL);renderLessons();stats();showNow()}
+  else if(++tries>40){clearInterval(poll);if(!PL[s.id])$('#lessons').innerHTML='<li class="note">تعذّر تحميل هذه القائمة الآن. تأكد من الاتصال، أو افتحها في يوتيوب من الرابط أعلاه.</li>'}},500);
+}
+
+function renderLessons(){
+ const ids=PL[cur.id]||[];let ci=-1;try{ci=player?player.getPlaylistIndex():-1}catch(e){}
+ $('#lessons').innerHTML=ids.map((v,i)=>{const o=V[v]||{};const w=o.done?100:o.d?Math.round(o.t/o.d*100):0;
+  return `<li><button data-i="${i}" data-v="${esc(v)}" aria-current="${i===ci}"><img loading="lazy" src="${thumb(esc(v))}" alt=""><span class="t"><span class="tt">${esc(o.ti||'الدرس '+ar(i+1))}</span>${o.done?'<br><span class="d">✓ أتممته</span>':w?`<span class="m"><i style="width:${w}%"></i></span>`:''}</span></button></li>`}).join('');
+ fetchTitles(ids);
+}
+
+let fetching=false;
+async function fetchTitles(ids){
+ if(fetching)return;fetching=true;
+ for(const v of ids.slice(0,200)){
+  if(V[v]&&V[v].ti)continue;if(!cur)break;
+  try{const r=await fetch('https://noembed.com/embed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+v));const j=await r.json();
+   if(j&&j.title){V[v]={...(V[v]||{t:0}),ti:j.title};const el=document.querySelector(`[data-v="${CSS.escape(v)}"] .tt`);if(el)el.textContent=j.title}}catch(e){break}
+ }
+ save('v',V);fetching=false;
+}
+
+function showNow(){
+ try{const d=player.getVideoData();if(!d||!d.video_id)return;const o=V[d.video_id]||{};
+  $('#now').innerHTML=`${esc(d.title||o.ti||'')}<span>${o.done?'أتممت هذا الدرس':o.t?'آخر موضع: '+fmt(o.t):'لم تبدأه بعد'}</span>`}catch(e){}
+}
+
+function onState(e){
+ if(e.data===YT.PlayerState.PLAYING){
+  const d=player.getVideoData();const vid=d&&d.video_id;
+  if(vid&&vid!==curVid){curVid=vid;const o=V[vid];
+   if(o&&!o.done&&o.t>10&&Math.abs(player.getCurrentTime()-o.t)>5)player.seekTo(o.t,true);
+   if(d.title){V[vid]={...(o||{t:0}),ti:d.title}}
+   document.querySelectorAll('#lessons button').forEach(b=>b.setAttribute('aria-current',b.dataset.v===vid));
+  }
+  showNow();
+ }
+ if(e.data===YT.PlayerState.ENDED)tick(true);
+}
+
+function tick(ended){
+ if(!player||!cur||!player.getPlayerState)return;
+ let st;try{st=player.getPlayerState()}catch(e){return}
+ if(st!==1&&!ended)return;
+ const d=player.getVideoData();const vid=d&&d.video_id;if(!vid)return;
+ const t=player.getCurrentTime(),du=player.getDuration();
+ const o=V[vid]||{t:0};
+ V[vid]={...o,t:Math.max(o.done?o.t:0,t),d:du||o.d,ti:o.ti||d.title,done:o.done||ended||(du>0&&t/du>=.92)};
+ if(!o.done&&V[vid].done)toast('بارك الله فيك، أتممت هذا الدرس');
+ LAST={pl:cur.id,vid};save('v',V);save('last',LAST);
+ const b=document.querySelector(`[data-v="${CSS.escape(vid)}"] .t`);
+ if(b){const w=V[vid].done?100:Math.round(V[vid].t/(V[vid].d||1)*100);const m=b.querySelector('.m i');if(m)m.style.width=w+'%';else if(!V[vid].done)b.insertAdjacentHTML('beforeend',`<span class="m"><i style="width:${w}%"></i></span>`);if(V[vid].done&&!b.querySelector('.d')){b.querySelector('.m')?.remove();b.insertAdjacentHTML('beforeend','<br><span class="d">✓ أتممته</span>')}}
+ showNow();
+}
+setInterval(tick,4000);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)tick()});
+
+function closeView(){tick();try{player&&player.pauseVideo()}catch(e){}$('#view').classList.remove('on');document.body.style.overflow='';cur=null;curVid=null;renderAll()}
+
+/* ===== الأحداث ===== */
+document.addEventListener('click',e=>{
+ const o=e.target.closest('[data-open]');if(o){const s=all().find(x=>x.id===o.dataset.open);if(s)openSeries(s);return}
+ const f=e.target.closest('[data-f]');if(f){fan=f.dataset.f;renderChips();renderList();if(f.closest('#list'))$('#chips').scrollIntoView({behavior:'smooth'});return}
+ const sr=e.target.closest('[data-src]');if(sr){src=sr.dataset.src;renderSrc();renderList();return}
+ const l=e.target.closest('#lessons button');if(l&&player){tick();curVid=null;player.playVideoAt(+l.dataset.i);return}
+ const a=e.target.closest('[data-add]');if(a){openAdd(a.dataset.add);return}
+ const d=e.target.closest('[data-del]');if(d){if(d.dataset.sure){CUSTOM=CUSTOM.filter(c=>c.id!==d.dataset.del);save('custom',CUSTOM);renderAll();toast('حُذفت السلسلة')}else{d.dataset.sure=1;d.textContent='اضغط مرة أخرى للتأكيد'}}
+});
+$('#close').onclick=()=>history.length>1&&location.hash==='#play'?history.back():closeView();
+addEventListener('popstate',()=>{if(location.hash!=='#play'&&cur)closeView()});
+$('#q').addEventListener('input',e=>{q=e.target.value;renderList()});
+$('#help').onclick=()=>$('#about').showModal();
+const root=document.documentElement;
+const setTheme=t=>{if(t)root.dataset.theme=t;else delete root.dataset.theme;save('theme',t)};
+setTheme(load('theme',''));
+$('#theme').onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;setTheme(dark?'light':'dark')};
+$('#share').onclick=async()=>{const data={title:'مجالس العصيمي',text:'دروس الشيخ صالح العصيمي مرتبة على الفنون',url:location.href.split('#')[0]};
+ try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(data.url);toast('نُسخ الرابط')}}catch(e){}};
+
+$('#fF').innerHTML=FANS.map(f=>`<option value="${f.k}">${esc(f.n)}</option>`).join('');
+function openAdd(k){$('#addForm').reset();$('#fErr').textContent='';if(k)$('#fF').value=k;$('#dlg').showModal()}
+$('#addBtn').onclick=()=>openAdd(fan!=='all'?fan:'');
+$('#fOk').onclick=e=>{
+ const u=$('#fUrl').value.trim(),t=$('#fT').value.trim();
+ const m=u.match(/[?&]list=([\w-]+)/)||u.match(/^((?:PL|UU|OL|FL)[\w-]{10,})$/);
+ if(!m){e.preventDefault();$('#fErr').textContent='لم أجد رقم القائمة في الرابط. انسخ رابط «قائمة التشغيل» لا رابط مقطع واحد.';return}
+ if(!t){e.preventDefault();$('#fErr').textContent='اكتب اسمًا للسلسلة.';return}
+ if(all().some(s=>s.id===m[1])){e.preventDefault();$('#fErr').textContent='هذه السلسلة موجودة من قبل.';return}
+ CUSTOM.push({id:m[1],t,f:$('#fF').value,a:'أضفتها أنت'});save('custom',CUSTOM);fan=$('#fF').value;renderAll();toast('أُضيفت السلسلة');
+};
+
+$('#exp').onclick=()=>{const b=new Blob([JSON.stringify({v:V,pl:PL,custom:CUSTOM,last:LAST})],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='taqaddumi-osaimi.json';a.click();toast('حُفظت نسخة من تقدّمك')};
+$('#imp').onchange=async e=>{try{const j=JSON.parse(await e.target.files[0].text());
+ V={...V,...(j.v||{})};PL={...PL,...(j.pl||{})};const ids=new Set(CUSTOM.map(c=>c.id));CUSTOM=[...CUSTOM,...(j.custom||[]).filter(c=>!ids.has(c.id))];LAST=j.last||LAST;
+ save('v',V);save('pl',PL);save('custom',CUSTOM);save('last',LAST);renderAll();toast('استُرجع تقدّمك')}catch(err){toast('الملف غير صالح')}};
+
+if(location.hash==='#play')history.replaceState(null,'',location.pathname);
+renderAll();
+}
+</script>
+</body>
+</html>
