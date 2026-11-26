@@ -280,7 +280,7 @@ function renderChips(){
  $('#chips').innerHTML=[{k:'all',n:'الكل'},...FANS].map(f=>`<button class="chip" data-f="${f.k}" aria-pressed="${fan===f.k}">${esc(f.n)}<i>${ar(f.k==='all'?all().length:f.k==='new'?all().filter(s=>s.nw).length:cnt(f.k))}</i></button>`).join('');
 }
 
-const INC=['سرد المطولات','شرح (تفسير السعدي)'];
+const INC=['سرد المطولات','شرح (تفسير السعدي)','فتح المجيد','العدة شرح العمدة','صيانة العلم'];
 function card(s){
  const p=seriesProg(s.id),F=FANS.find(f=>f.k===s.f);
  const w=p?Math.round(p.pct*100):0;
