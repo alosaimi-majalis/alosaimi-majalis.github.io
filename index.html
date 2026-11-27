@@ -250,6 +250,7 @@ const ar=n=>Number(n).toLocaleString('ar-EG');
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem('osm:'+k))??d}catch(e){return d}};
 const save=(k,v)=>{try{localStorage.setItem('osm:'+k,JSON.stringify(v))}catch(e){}};
 let V=load('v',{}),PL=load('pl',{}),CUSTOM=load('custom',[]),LAST=load('last',null);
+if(!load('plfix',0)){PL={};save('pl',PL);save('plfix',1)}
 {const seen={},bad=new Set();for(const k in PL){const j=JSON.stringify(PL[k]);if(seen[j]){bad.add(k);bad.add(seen[j])}else seen[j]=k}if(bad.size){bad.forEach(k=>delete PL[k]);save('pl',PL)}}
 let fan='all',q='',src='all';
 const all=()=>[...BASE,...CUSTOM.map(c=>({...c,mine:1}))];
@@ -327,6 +328,7 @@ function openSeries(s){
  const same=lastCued===s.id;let prev='';try{prev=JSON.stringify((player&&player.getPlaylist&&player.getPlaylist())||[])}catch(e){}
  lastCued=s.id;
  const cue=()=>player.cuePlaylist({listType:'playlist',list:s.id,index:idx,startSeconds:start});
+ if(player&&!same){try{player.destroy()}catch(e){}player=null;curVid=null;if(!document.getElementById('player'))document.querySelector('#view .ratio').innerHTML='<div id="player"></div>'}
  if(!player){player=new YT.Player('player',{playerVars:{playsinline:1,rel:0,modestbranding:1,hl:'ar'},events:{onReady:cue,onStateChange:onState,onError:()=>toast('تعذّر تشغيل هذا الدرس؛ جرّب درسًا آخر')}})}
  else cue();
  clearInterval(poll);let tries=0;
