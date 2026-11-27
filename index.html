@@ -331,7 +331,7 @@ function openSeries(s){
  else cue();
  clearInterval(poll);let tries=0;
  poll=setInterval(()=>{let ids=null,pid=null;try{ids=player&&player.getPlaylist&&player.getPlaylist();pid=player.getPlaylistId&&player.getPlaylistId()}catch(e){}
-  if(cur===s&&ids&&ids.length&&(pid?pid===s.id:(same||JSON.stringify(ids)!==prev))){clearInterval(poll);PL[s.id]=ids;save('pl',PL);renderLessons();stats();showNow()}
+  const J=ids&&JSON.stringify(ids);if(cur===s&&ids&&ids.length&&(!pid||pid===s.id)&&(same||J!==prev)&&!Object.keys(PL).some(k=>k!==s.id&&JSON.stringify(PL[k])===J)){clearInterval(poll);PL[s.id]=ids;save('pl',PL);renderLessons();stats();showNow()}
   else if(++tries>40){clearInterval(poll);if(!PL[s.id])$('#lessons').innerHTML='<li class="note">تعذّر تحميل هذه القائمة الآن. تأكد من الاتصال، أو افتحها في يوتيوب من الرابط أعلاه.</li>'}},500);
 }
 
