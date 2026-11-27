@@ -115,6 +115,12 @@ dialog .err{color:#c0392b;font-size:14px;min-height:1.4em;margin:6px 0 0}
 .aud li .n{flex:1 1 60%;min-width:0}
 .aud li a,.aud li button{font:inherit;font-size:13px;padding:4px 12px;border-radius:16px;border:1px solid var(--gold);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer}
 .aud li audio{width:100%;margin-top:4px}
+.ks{margin:18px 0 6px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--gold)}
+.ks label{display:block;font-weight:700;font-size:17px}
+.ks p{margin:4px 0 10px;color:var(--mute);font-size:13.5px}
+.ks div{display:flex;gap:8px}
+.ks input[type=search]{flex:1;min-width:0;font:inherit;padding:10px 14px;border-radius:14px;border:1px solid var(--line,#e3d9c3);background:var(--bg,#fff);color:var(--ink)}
+.ks button{font:inherit;font-weight:700;padding:0 18px;border-radius:14px;border:0;background:var(--gold);color:#fff;cursor:pointer}
 </style>
 </head>
 <body>
@@ -160,6 +166,11 @@ dialog .err{color:#c0392b;font-size:14px;min-height:1.4em;margin:6px 0 0}
  </section>
 
  <div id="resume"></div>
+ <form class="ks" action="https://baheth.ieasybooks.com/ar/transcriptions/search" method="get" target="_blank" rel="noopener">
+  <label for="ksq">ابحث في كلام الشيخ</label>
+  <p>اكتب مسألة أو عبارة، فتظهر لك المواضع التي تكلم فيها الشيخ عنها في دروسه، مع وقتها في الدرس. (من تفريغات موقع «باحث»)</p>
+  <div><input type="hidden" name="speaker" value="15"><input id="ksq" name="transcriptions_query" type="search" required placeholder="مثال: الفرق بين الشرك الأصغر والأكبر"><button type="submit">ابحث</button></div>
+ </form>
  <nav class="chips" id="chips" aria-label="الفنون"></nav>
  <div id="list"></div>
  <section class="jeman" id="jeman">
